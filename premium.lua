@@ -1,1 +1,2 @@
-true
+return true
+
