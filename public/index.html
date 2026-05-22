@@ -8,240 +8,101 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:          #07060f;
-      --surface:     #0e0c1a;
-      --surface2:    #15122a;
-      --border:      rgba(139,92,246,0.15);
-      --border-hover:rgba(139,92,246,0.35);
-      --accent:      #a855f7;
-      --accent-bright:#c084fc;
-      --accent-dim:  rgba(168,85,247,0.12);
-      --text:        #f0eeff;
-      --muted:       #6b6480;
-      --error:       #f87171;
-      --error-dim:   rgba(248,113,113,0.1);
+      --bg: #07060f; --surface: #0e0c1a; --surface2: #15122a;
+      --border: rgba(139,92,246,0.15); --border-hover: rgba(139,92,246,0.35);
+      --accent: #a855f7; --accent-bright: #c084fc; --accent-dim: rgba(168,85,247,0.12);
+      --text: #f0eeff; --muted: #6b6480;
+      --error: #f87171; --error-dim: rgba(248,113,113,0.1);
+      --warn: #fb923c; --warn-dim: rgba(251,146,60,0.1);
     }
-
     html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
+      height: 100%; background: var(--bg); color: var(--text);
       font-family: 'Syne', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px);
-      background-size: 44px 44px;
-      pointer-events: none;
+      content: ''; position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px);
+      background-size: 44px 44px; pointer-events: none;
     }
-
     body::after {
-      content: '';
-      position: fixed;
-      top: -15%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 420px;
+      content: ''; position: fixed; top: -15%; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 420px;
       background: radial-gradient(ellipse, rgba(139,92,246,0.13) 0%, transparent 68%);
       pointer-events: none;
     }
-
     .card {
-      position: relative;
-      width: 430px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 50px 46px 46px;
+      position: relative; width: 430px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 22px; padding: 50px 46px 46px;
       animation: rise 0.55s cubic-bezier(0.22,1,0.36,1) both;
       box-shadow: 0 0 0 1px rgba(139,92,246,0.05), 0 40px 80px rgba(0,0,0,0.6);
     }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      margin-bottom: 38px;
-    }
-
+    @keyframes rise { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    .logo { display:flex; align-items:center; gap:11px; margin-bottom:38px; }
     .logo-mark {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #7c3aed, #a855f7);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 16px rgba(139,92,246,0.35);
+      width:36px; height:36px; background:linear-gradient(135deg,#7c3aed,#a855f7);
+      border-radius:10px; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 16px rgba(139,92,246,0.35);
     }
-
-    .logo-mark svg { display: block; }
-
+    .logo-mark svg { display:block; }
     .logo-text {
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #f0eeff, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size:19px; font-weight:700; letter-spacing:-0.03em;
+      background:linear-gradient(135deg,#f0eeff,#c084fc);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
-
-    h1 {
-      font-size: 27px;
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 34px;
-      font-family: 'DM Mono', monospace;
-    }
-
-    .field { margin-bottom: 18px; }
-
-    .field label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .input-wrap { position: relative; }
-
+    h1 { font-size:27px; font-weight:700; letter-spacing:-0.035em; color:var(--text); margin-bottom:6px; }
+    .subtitle { font-size:13px; color:var(--muted); margin-bottom:34px; font-family:'DM Mono',monospace; }
+    .field { margin-bottom:18px; }
+    .field label { display:block; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+    .input-wrap { position:relative; }
     .field input {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      padding: 14px 46px 14px 16px;
-      font-size: 15px;
-      font-family: 'DM Mono', monospace;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      letter-spacing: 0.08em;
+      width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:11px;
+      padding:14px 46px 14px 16px; font-size:15px; font-family:'DM Mono',monospace;
+      color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; letter-spacing:0.08em;
     }
-
-    .field input::placeholder { color: var(--muted); letter-spacing: 0.03em; }
-
-    .field input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(168,85,247,0.15);
-    }
-
+    .field input::placeholder { color:var(--muted); letter-spacing:0.03em; }
+    .field input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(168,85,247,0.15); }
+    .field input:disabled { opacity:0.5; }
     .toggle-vis {
-      position: absolute;
-      right: 13px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--muted);
-      padding: 4px;
-      line-height: 0;
-      transition: color 0.2s;
+      position:absolute; right:13px; top:50%; transform:translateY(-50%);
+      background:none; border:none; cursor:pointer; color:var(--muted);
+      padding:4px; line-height:0; transition:color 0.2s;
     }
-    .toggle-vis:hover { color: var(--accent-bright); }
-
-    .error-box {
-      display: none;
-      background: var(--error-dim);
-      border: 1px solid rgba(248,113,113,0.22);
-      border-radius: 10px;
-      padding: 11px 14px;
-      font-size: 13px;
-      font-family: 'DM Mono', monospace;
-      color: var(--error);
-      margin-bottom: 16px;
+    .toggle-vis:hover { color:var(--accent-bright); }
+    .msg-box {
+      display:none; border-radius:10px; padding:11px 14px;
+      font-size:13px; font-family:'DM Mono',monospace; margin-bottom:16px; line-height:1.5;
     }
-    .error-box.show { display: block; }
-
+    .msg-box.error { background:var(--error-dim); border:1px solid rgba(248,113,113,0.22); color:var(--error); }
+    .msg-box.warn  { background:var(--warn-dim);  border:1px solid rgba(251,146,60,0.22);  color:var(--warn); }
+    .msg-box.show  { display:block; }
     .btn {
-      width: 100%;
-      background: linear-gradient(135deg, #7c3aed, #a855f7);
-      color: #fff;
-      border: none;
-      border-radius: 11px;
-      padding: 15px;
-      font-size: 15px;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-      margin-top: 6px;
-      box-shadow: 0 4px 20px rgba(139,92,246,0.3);
+      width:100%; background:linear-gradient(135deg,#7c3aed,#a855f7); color:#fff;
+      border:none; border-radius:11px; padding:15px; font-size:15px;
+      font-family:'Syne',sans-serif; font-weight:700; cursor:pointer;
+      transition:opacity 0.2s,transform 0.15s; margin-top:6px;
+      box-shadow:0 4px 20px rgba(139,92,246,0.3);
     }
-
-    .btn:hover { opacity: 0.88; }
-    .btn:active { transform: scale(0.98); }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 26px 0 0;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    .divider span {
-      font-size: 11px;
-      font-family: 'DM Mono', monospace;
-      color: var(--muted);
-    }
-
-    .footer-note {
-      margin-top: 16px;
-      font-size: 12px;
-      color: var(--muted);
-      font-family: 'DM Mono', monospace;
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    .shake { animation: shake 0.4s cubic-bezier(0.36,0.07,0.19,0.97); }
-
+    .btn:hover { opacity:0.88; } .btn:active { transform:scale(0.98); }
+    .btn:disabled { opacity:0.4; cursor:not-allowed; }
+    .divider { display:flex; align-items:center; gap:12px; margin:26px 0 0; }
+    .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .divider span { font-size:11px; font-family:'DM Mono',monospace; color:var(--muted); }
+    .footer-note { margin-top:16px; font-size:12px; color:var(--muted); font-family:'DM Mono',monospace; text-align:center; line-height:1.6; }
+    .shake { animation:shake 0.4s cubic-bezier(0.36,0.07,0.19,0.97); }
     @keyframes shake {
-      10%, 90% { transform: translateX(-2px); }
-      20%, 80% { transform: translateX(5px); }
-      30%, 50%, 70% { transform: translateX(-5px); }
-      40%, 60% { transform: translateX(5px); }
+      10%,90%{transform:translateX(-2px)} 20%,80%{transform:translateX(5px)}
+      30%,50%,70%{transform:translateX(-5px)} 40%,60%{transform:translateX(5px)}
     }
+    .spinner {
+      display:inline-block; width:14px; height:14px; border:2px solid rgba(255,255,255,0.3);
+      border-top-color:#fff; border-radius:50%; animation:spin 0.6s linear infinite; vertical-align:middle; margin-right:8px;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
   </style>
 </head>
 <body>
-
   <div class="card" id="card">
     <div class="logo">
       <div class="logo-mark">
@@ -251,20 +112,12 @@
       </div>
       <span class="logo-text">AuthGuard</span>
     </div>
-
     <h1>Welcome back</h1>
     <p class="subtitle">// enter your access key to continue</p>
-
     <div class="field">
       <label for="key-input">Access Key</label>
       <div class="input-wrap">
-        <input
-          type="password"
-          id="key-input"
-          placeholder="ag-••••••••••••••••"
-          autocomplete="off"
-          spellcheck="false"
-        />
+        <input type="password" id="key-input" placeholder="ag-••••••••••••••••" autocomplete="off" spellcheck="false" />
         <button class="toggle-vis" id="toggle-vis" aria-label="Show key" tabindex="-1">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
@@ -272,54 +125,19 @@
         </button>
       </div>
     </div>
-
-    <div class="error-box" id="error-box">⚠ Invalid access key. Please try again.</div>
-
+    <div class="msg-box error" id="msg-box"></div>
     <button class="btn" id="login-btn">Unlock Access →</button>
-
     <div class="divider"><span>secured by authguard</span></div>
     <p class="footer-note">Don't have a key? Contact your administrator.</p>
   </div>
 
   <script>
-    // ─────────────────────────────────────────────────────
-    //  EDIT YOUR KEYS HERE
-    //  key   = what the user types in
-    //  label = display name shown in the dashboard
-    // ─────────────────────────────────────────────────────
-    const ACCESS_KEYS = [
-      { key: "ag-admin-2024-abc123",  label: "admin"  },
-      { key: "ag-user1-xyz789",       label: "user1"  },
-      { key: "ag-user2-qrs456",       label: "user2"  },
-    ];
-
-    const COOKIE_NAME   = "ag_session";
-    const COOKIE_DAYS   = 7;
-    const REDIRECT_PATH = "/dashboard/";
-
-    function setCookie(name, value, days) {
-      const exp = new Date(Date.now() + days * 864e5).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${exp}; path=/; SameSite=Strict`;
-    }
-
-    function getCookie(name) {
-      return document.cookie.split('; ').reduce((acc, c) => {
-        const [k, v] = c.split('=');
-        return k === name ? decodeURIComponent(v) : acc;
-      }, null);
-    }
-
-    // Auto-redirect if already logged in
-    const session = getCookie(COOKIE_NAME);
-    if (session && ACCESS_KEYS.find(k => k.label === session)) {
-      window.location.replace(REDIRECT_PATH);
-    }
-
-    const input     = document.getElementById('key-input');
-    const btn       = document.getElementById('login-btn');
-    const errorBox  = document.getElementById('error-box');
-    const card      = document.getElementById('card');
-    const toggleBtn = document.getElementById('toggle-vis');
+    const REDIRECT_PATH = '/dashboard/';
+    const input    = document.getElementById('key-input');
+    const btn      = document.getElementById('login-btn');
+    const msgBox   = document.getElementById('msg-box');
+    const card     = document.getElementById('card');
+    const toggleBtn= document.getElementById('toggle-vis');
 
     toggleBtn.addEventListener('click', () => {
       const hidden = input.type === 'password';
@@ -327,29 +145,59 @@
       toggleBtn.setAttribute('aria-label', hidden ? 'Hide key' : 'Show key');
     });
 
-    function attemptLogin() {
+    function showMsg(text, type = 'error') {
+      msgBox.textContent = text;
+      msgBox.className = `msg-box ${type} show`;
+    }
+
+    function setLoading(on) {
+      btn.disabled = on;
+      input.disabled = on;
+      btn.innerHTML = on ? '<span class="spinner"></span>Verifying...' : 'Unlock Access →';
+    }
+
+    async function attemptLogin() {
       const val = input.value.trim();
       if (!val) return;
-      const match = ACCESS_KEYS.find(k => k.key === val);
-      if (match) {
-        setCookie(COOKIE_NAME, match.label, COOKIE_DAYS);
-        btn.textContent = 'Access granted ✓';
-        btn.disabled = true;
-        setTimeout(() => window.location.replace(REDIRECT_PATH), 600);
-      } else {
-        errorBox.classList.add('show');
-        card.classList.remove('shake');
-        void card.offsetWidth;
-        card.classList.add('shake');
-        input.value = '';
-        input.focus();
+      msgBox.classList.remove('show');
+      setLoading(true);
+
+      try {
+        const res = await fetch('/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ action: 'login', key: val }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.ok) {
+          btn.innerHTML = 'Access granted ✓';
+          setTimeout(() => window.location.replace(REDIRECT_PATH), 500);
+        } else if (res.status === 409) {
+          // Key already in use
+          showMsg('⚠ ' + data.error, 'warn');
+          setLoading(false);
+          input.value = '';
+          input.focus();
+          card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+        } else {
+          showMsg('⚠ Invalid access key. Please try again.');
+          setLoading(false);
+          input.value = '';
+          input.focus();
+          card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+        }
+      } catch (err) {
+        showMsg('⚠ Could not reach server. Check your connection.');
+        setLoading(false);
       }
     }
 
     btn.addEventListener('click', attemptLogin);
     input.addEventListener('keydown', e => { if (e.key === 'Enter') attemptLogin(); });
-    input.addEventListener('input', () => errorBox.classList.remove('show'));
+    input.addEventListener('input', () => msgBox.classList.remove('show'));
   </script>
-
 </body>
 </html>
