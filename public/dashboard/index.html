@@ -8,334 +8,188 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:           #07060f;
-      --surface:      #0e0c1a;
-      --surface2:     #15122a;
-      --border:       rgba(139,92,246,0.15);
-      --border-hover: rgba(139,92,246,0.32);
-      --accent:       #a855f7;
-      --accent-bright:#c084fc;
-      --accent-dim:   rgba(168,85,247,0.12);
-      --text:         #f0eeff;
-      --muted:        #6b6480;
+      --bg:#07060f; --surface:#0e0c1a; --surface2:#15122a;
+      --border:rgba(139,92,246,0.15); --border-hover:rgba(139,92,246,0.32);
+      --accent:#a855f7; --accent-bright:#c084fc; --accent-dim:rgba(168,85,247,0.12);
+      --text:#f0eeff; --muted:#6b6480;
     }
-
-    html, body {
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-    }
-
+    html, body { min-height:100%; background:var(--bg); color:var(--text); font-family:'Syne',sans-serif; }
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px);
-      background-size: 44px 44px;
-      pointer-events: none;
-      z-index: 0;
+      content:''; position:fixed; inset:0;
+      background-image:linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+      background-size:44px 44px; pointer-events:none; z-index:0;
     }
-
-    /* ── Nav ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(7,6,15,0.88);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 36px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position:sticky; top:0; z-index:100;
+      background:rgba(7,6,15,0.88); backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--border); padding:0 36px; height:60px;
+      display:flex; align-items:center; justify-content:space-between;
     }
-
-    .nav-left { display: flex; align-items: center; gap: 11px; }
-
+    .nav-left { display:flex; align-items:center; gap:11px; }
     .logo-mark {
-      width: 30px;
-      height: 30px;
-      background: linear-gradient(135deg, #7c3aed, #a855f7);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 10px rgba(139,92,246,0.3);
+      width:30px; height:30px; background:linear-gradient(135deg,#7c3aed,#a855f7);
+      border-radius:8px; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 2px 10px rgba(139,92,246,0.3);
     }
-
-    .logo-mark svg { display: block; }
-
+    .logo-mark svg { display:block; }
     .logo-text {
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #f0eeff, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size:17px; font-weight:700; letter-spacing:-0.03em;
+      background:linear-gradient(135deg,#f0eeff,#c084fc);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
-
-    .nav-right { display: flex; align-items: center; gap: 14px; }
-
+    .nav-right { display:flex; align-items:center; gap:14px; }
     .user-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 5px 14px 5px 10px;
-      font-size: 13px;
-      font-family: 'DM Mono', monospace;
-      color: var(--muted);
+      display:flex; align-items:center; gap:8px;
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:20px; padding:5px 14px 5px 10px;
+      font-size:13px; font-family:'DM Mono',monospace; color:var(--muted);
     }
-
-    .user-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-bright);
-      box-shadow: 0 0 6px rgba(192,132,252,0.6);
-    }
-
+    .user-dot { width:7px; height:7px; border-radius:50%; background:var(--accent-bright); box-shadow:0 0 6px rgba(192,132,252,0.6); }
     .logout-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      color: var(--muted);
-      font-size: 13px;
-      font-family: 'Syne', sans-serif;
-      padding: 7px 16px;
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
+      background:transparent; border:1px solid var(--border); border-radius:9px;
+      color:var(--muted); font-size:13px; font-family:'Syne',sans-serif;
+      padding:7px 16px; cursor:pointer; transition:color 0.2s,border-color 0.2s;
     }
-    .logout-btn:hover { color: var(--text); border-color: var(--border-hover); }
-
-    /* ── Main ── */
+    .logout-btn:hover { color:var(--text); border-color:var(--border-hover); }
     main {
-      position: relative;
-      z-index: 1;
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 60px 32px 100px;
-      animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
+      position:relative; z-index:1; max-width:920px; margin:0 auto; padding:60px 32px 100px;
+      animation:rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
     }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @keyframes rise { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    .page-label { font-size:11px; font-family:'DM Mono',monospace; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px; }
+    h1 { font-size:44px; font-weight:700; letter-spacing:-0.045em; line-height:1.08; margin-bottom:14px; }
+    h1 span { background:linear-gradient(135deg,#a855f7,#c084fc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero-sub { font-size:15px; color:var(--muted); font-family:'DM Mono',monospace; margin-bottom:52px; line-height:1.7; max-width:500px; }
+    .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-bottom:44px; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:28px 24px; transition:border-color 0.2s,transform 0.2s; }
+    .card:hover { border-color:var(--border-hover); transform:translateY(-2px); }
+    .card-icon { width:40px; height:40px; background:var(--accent-dim); border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+    .card h3 { font-size:15px; font-weight:600; margin-bottom:7px; letter-spacing:-0.01em; }
+    .card p { font-size:13px; color:var(--muted); line-height:1.65; font-family:'DM Mono',monospace; }
+    hr.divider { border:none; border-top:1px solid var(--border); margin:40px 0; }
+    .section-label { font-size:11px; font-family:'DM Mono',monospace; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:20px; }
+    .placeholder-block { background:var(--surface); border:1px dashed rgba(139,92,246,0.25); border-radius:18px; padding:48px 40px; text-align:center; }
+    .placeholder-block p { font-size:14px; color:var(--muted); font-family:'DM Mono',monospace; line-height:1.8; }
+    .placeholder-block strong { color:var(--accent-bright); font-weight:500; }
+    /* Full-screen gate while verifying */
+    #gate {
+      position:fixed; inset:0; background:var(--bg); z-index:999;
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
     }
-
-    .page-label {
-      font-size: 11px;
-      font-family: 'DM Mono', monospace;
-      color: var(--accent);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+    .gate-spinner {
+      width:32px; height:32px; border:2px solid rgba(168,85,247,0.2);
+      border-top-color:var(--accent); border-radius:50%; animation:spin 0.7s linear infinite;
     }
-
-    h1 {
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: -0.045em;
-      line-height: 1.08;
-      margin-bottom: 14px;
-    }
-
-    h1 span {
-      background: linear-gradient(135deg, #a855f7, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 15px;
-      color: var(--muted);
-      font-family: 'DM Mono', monospace;
-      margin-bottom: 52px;
-      line-height: 1.7;
-      max-width: 500px;
-    }
-
-    /* ── Cards ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
-      margin-bottom: 44px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px 24px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .card-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--accent-dim);
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
-
-    .card h3 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 7px;
-      letter-spacing: -0.01em;
-    }
-
-    .card p {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-      font-family: 'DM Mono', monospace;
-    }
-
-    hr.divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 40px 0;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-family: 'DM Mono', monospace;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .placeholder-block {
-      background: var(--surface);
-      border: 1px dashed rgba(139,92,246,0.25);
-      border-radius: 18px;
-      padding: 48px 40px;
-      text-align: center;
-    }
-
-    .placeholder-block p {
-      font-size: 14px;
-      color: var(--muted);
-      font-family: 'DM Mono', monospace;
-      line-height: 1.8;
-    }
-
-    .placeholder-block strong { color: var(--accent-bright); font-weight: 500; }
+    .gate-text { font-size:13px; font-family:'DM Mono',monospace; color:var(--muted); }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    #content { display:none; }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-left">
-      <div class="logo-mark">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-      </div>
-      <span class="logo-text">AuthGuard</span>
-    </div>
-    <div class="nav-right">
-      <div class="user-badge">
-        <div class="user-dot"></div>
-        <span id="user-label">—</span>
-      </div>
-      <button class="logout-btn" id="logout-btn">Sign out</button>
-    </div>
-  </nav>
+  <!-- Shown while session is being verified -->
+  <div id="gate">
+    <div class="gate-spinner"></div>
+    <div class="gate-text">verifying session...</div>
+  </div>
 
-  <main>
-    <div class="page-label">// dashboard</div>
-    <h1>Hello, <span id="greeting-name">—</span></h1>
-    <p class="hero-sub">You're securely authenticated. Build your app below — only users with a valid key can reach this page.</p>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+  <!-- Hidden until verified -->
+  <div id="content">
+    <nav>
+      <div class="nav-left">
+        <div class="logo-mark">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
         </div>
-        <h3>Feature one</h3>
-        <p>Replace this card with a real feature. Describe what this section of your app does.</p>
+        <span class="logo-text">AuthGuard</span>
       </div>
-      <div class="card">
-        <div class="card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
+      <div class="nav-right">
+        <div class="user-badge">
+          <div class="user-dot"></div>
+          <span id="user-label">—</span>
         </div>
-        <h3>Feature two</h3>
-        <p>Replace this card with a real feature. Describe what this section of your app does.</p>
+        <button class="logout-btn" id="logout-btn">Sign out</button>
       </div>
-      <div class="card">
-        <div class="card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-          </svg>
+    </nav>
+
+    <main>
+      <div class="page-label">// dashboard</div>
+      <h1>Hello, <span id="greeting-name">—</span></h1>
+      <p class="hero-sub">You're securely authenticated. Build your app below — only users with a valid server-verified session can reach this page.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+          </div>
+          <h3>Feature one</h3>
+          <p>Replace this card with a real feature. Describe what this section does.</p>
         </div>
-        <h3>Feature three</h3>
-        <p>Replace this card with a real feature. Describe what this section of your app does.</p>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>Feature two</h3>
+          <p>Replace this card with a real feature. Describe what this section does.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            </svg>
+          </div>
+          <h3>Feature three</h3>
+          <p>Replace this card with a real feature. Describe what this section does.</p>
+        </div>
       </div>
-    </div>
 
-    <hr class="divider" />
-
-    <p class="section-label">// your app content</p>
-    <div class="placeholder-block">
-      <p>This area is protected by AuthGuard.<br/>
-      Edit <strong>/public/dashboard/index.html</strong> and build your tool here.</p>
-    </div>
-  </main>
+      <hr class="divider" />
+      <p class="section-label">// your app content</p>
+      <div class="placeholder-block">
+        <p>This area is protected by AuthGuard.<br/>
+        Edit <strong>/public/dashboard/index.html</strong> and build your tool here.</p>
+      </div>
+    </main>
+  </div>
 
   <script>
-    const COOKIE_NAME  = "ag_session";
-    const LOGIN_PATH   = "/";
+    const LOGIN_PATH = '/';
 
-    function getCookie(name) {
-      return document.cookie.split('; ').reduce((acc, c) => {
-        const [k, v] = c.split('=');
-        return k === name ? decodeURIComponent(v) : acc;
-      }, null);
+    async function verify() {
+      try {
+        const res = await fetch('/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ action: 'verify' }),
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+          document.getElementById('user-label').textContent = data.label;
+          document.getElementById('greeting-name').textContent = data.label;
+          document.getElementById('gate').style.display = 'none';
+          document.getElementById('content').style.display = 'block';
+        } else {
+          window.location.replace(LOGIN_PATH);
+        }
+      } catch {
+        window.location.replace(LOGIN_PATH);
+      }
     }
 
-    function deleteCookie(name) {
-      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Strict`;
-    }
-
-    const session = getCookie(COOKIE_NAME);
-    if (!session) {
-      window.location.replace(LOGIN_PATH);
-    } else {
-      document.getElementById('user-label').textContent = session;
-      document.getElementById('greeting-name').textContent = session;
-    }
-
-    document.getElementById('logout-btn').addEventListener('click', () => {
-      deleteCookie(COOKIE_NAME);
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await fetch('/api/logout', { method: 'POST', credentials: 'include' });
       window.location.replace(LOGIN_PATH);
     });
-  </script>
 
+    verify();
+  </script>
 </body>
 </html>
