@@ -1,6 +1,6 @@
 // api/auth.js
 // Runs on Vercel's servers — keys are never exposed to the browser
-
+ 
 const crypto = require('crypto');
 
 // ─────────────────────────────────────────────────────────────
